@@ -5,9 +5,9 @@ const NavBar=()=>{
 
     return(
     <nav>
-    <Link to="/">Home</Link>
-    <Link to="/route1">Route1</Link>
-    <Link to="/route2">Route2</Link>
+        <Link to="/">Home</Link>
+        <Link to="/route1">Route1</Link>
+        <Link to="/route2">Route2</Link>
     
     </nav>
     )

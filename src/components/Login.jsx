@@ -1,10 +1,18 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { useFormik } from 'formik';
 import img2 from '../images/loginimg.jpg'
 import * as yup from 'yup'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import {useNavigate} from 'react-router-dom'
+
+import httpService from '../services/httpService'
 
 const Login = () => {
+  const navigate = useNavigate()
+  const [user, setUser] = useState(null);
+
+  let http = new httpService()
+
   const validationSchema = yup.object({
     email: yup.string().email("Formato Incorrecto").required("Campo requerido"),
     password: yup.string().min(6, "Necesita al menos 6 caracteres").required("Campo requerido")
@@ -20,6 +28,22 @@ const Login = () => {
     onSubmit: (values) => {
       const data = {...values}
       console.log(data)
+
+      http.post('users/auth/login',data).then(res => {
+        if(res.text) return alert(res.text)
+
+        console.log(res)
+
+        localStorage.setItem('token',res.token)
+        setUser({
+          firstName: res.data.firstName,
+          lastName: res.data.lastName,
+          email: res.data.email,
+          image: res.data.image,
+          role: res.data.roleId
+        })
+        navigate('/')
+      })
     },
   });
 
@@ -66,7 +90,7 @@ const Login = () => {
                       <button type="submit" className='btn btn-danger mt-2 rounded'>Inicia Sesión</button>
 
                       </div>
-            <p className="mt-2 text-center">No tienes una cuenta? <strong><a className='text-danger text-decoration-none' href="http://">Registrate</a></strong></p>
+            <p className="mt-2 text-center">No tienes una cuenta? <strong><a className='text-danger text-decoration-none' href="/">Registrate</a></strong></p>
             </form>
 
 

@@ -6,6 +6,7 @@ const headers = {
 };
 
 function joinURL(baseUrl, url) {
+  if(baseUrl === undefined) return `/${url}`;
   return `${baseUrl}/${url}`;
 }
 
@@ -13,7 +14,7 @@ let API_URL = process.env.REACT_APP_API_URL;
 
 class httpService {
   constructor() {
-    this.domain = API_URL;
+    this.domain = null||API_URL;
   }
   request(url, method = "POST", data = null) {
     url = joinURL(this.domain, url);
