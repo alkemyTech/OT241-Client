@@ -2,21 +2,22 @@ import React from "react";
 
 import {BrowserRouter,Routes,Route} from "react-router-dom";
 import NavBar from "../../src/components/NavBar";
+import RegisterForm from "./RegisterForm";
+import Login from './Login'
 
+
+import Home from '../pages/Home'
 
 
 const RoutesNav=()=>{
 
     return(
         <>
-        <BrowserRouter>
-       <NavBar/>
-        <Routes>
-            <Route path="/"element={<h2>Home</h2>}/>
-            <Route path="/route1"element={<h2>Route 1</h2>}/>
-            <Route path="/route2"element={<h2>Route 2</h2>}/>
-        </Routes>
-        </BrowserRouter>
+            <Routes>
+                <Route path="/"element={<Home/>}/>
+                <Route path="/registro"element={<RegisterForm/>}/>
+                <Route path="/ingreso" element={<Login/>}/>
+            </Routes>
         </>
     )
 }
