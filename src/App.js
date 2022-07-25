@@ -9,6 +9,7 @@ function App() {
     <div className="">
       <Header />
       <Slider />
+      <Backoffice />
       <Footer/>
     </div>
   )
