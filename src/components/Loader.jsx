@@ -16,6 +16,7 @@ function Loader() {
         justifyContent: "center",
         alignItems: "center",
         overflow: "visible",
+        backgroundColor: 'rgba(0,0,0,0.4)'
       }}
     >
       <MutatingDots height="100" width="100" color="indianred" ariaLabel="Loading" />
