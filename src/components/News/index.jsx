@@ -11,10 +11,9 @@ const News = () => {
     
     async function getData (){
         let response = await axios.get('http://localhost:3000/news')
-
         setNews(response.data)
     }
-
+  
     getData()
   },[])
 
@@ -23,7 +22,6 @@ const News = () => {
         <h1>NEWS</h1>
         <div className='d-flex flex-wrap justify-content-center'>
         {news.map(e=>{
-            console.log(e)
             let {name,image,createdAt,id} = e
             return (
                 <>
