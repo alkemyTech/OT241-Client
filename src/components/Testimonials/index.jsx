@@ -4,13 +4,14 @@ import httpService from "../../services/httpService";
 import { v4 as uuidv4 } from "uuid";
 import { Link } from "react-router-dom";
 import "./styles.css";
+import axios from 'axios'
 
 const service = new httpService();
 
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
   useEffect(() => {
-    service.get("testimonials").then((res) => {
+    service.get("/testimonials").then((res) => {
       setTestimonials(res);
     });
   }, []);

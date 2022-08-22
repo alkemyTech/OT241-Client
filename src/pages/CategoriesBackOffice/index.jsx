@@ -6,7 +6,7 @@ import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { ConfirmAlert } from "../../components/Alerts";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-
+import axios  from "axios";
 const service = new httpService();
 
 const CategoriesBackOffice = () => {
@@ -14,15 +14,16 @@ const CategoriesBackOffice = () => {
   const [props, setProps] = useState();
   const [errors, setErrors] = useState(null);
   const [reloadData, setReloadData] = useState(false);
-
+  
   // Get all news
   useEffect(() => {
     let mounted = true;
     async function fetchData() {
       if (mounted) {
         try {
-          let categories = await service.get("categories");
-          setProps([...categories]);
+          let categories = await axios.get("http://localhost:3000/categories");
+      
+          setProps([...categories.data]);
           if (categories.length === 0 || !categories) {
             setErrors({ msg: "No categories finded" });
           } else {

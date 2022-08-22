@@ -5,6 +5,7 @@ import ErrorMessage from "../../components/ErrorMessage";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { ConfirmAlert } from "../../components/Alerts";
+import axios from 'axios'
 
 const service = new httpService();
 
@@ -21,8 +22,8 @@ const TestimonialsBackOffice = () => {
       if (mounted) {
         try {
           // TODO: Descomentar esta línea una vez este listo el endpoint de la api:
-          let testimonials = await service.get("testimonials");
-          setProps([...testimonials]);
+          let testimonials = await axios.get("http://localhost:3000/testimonials");
+          setProps([...testimonials.data]);
           if (testimonials.length === 0) {
             setErrors({ msg: "No testimonials finded" });
           } else {
